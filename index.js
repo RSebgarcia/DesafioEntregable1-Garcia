@@ -9,12 +9,11 @@ class ProductManager{
         this.stock = stock
     }
     addProduct(title, description, price, thumbnail, code, stock){
-        //Valido que existan todas las propiedades
         if(!title || !description || !price ||!code || !stock){
             let error = new Error("Missing product properies, all properties must be declared.")
             console.error(error)
             return //Esta bien hacerlo de esta manera? No se me ocurrio otra forma de almacenar y enviar el error.
-        }//Valido que el codigo no exista.
+        }
         if (this.productos.some((product) => product.code === code)) {
             let error =  new Error("Product code already exists, please change it and try again.");
             console.error(error)
@@ -28,7 +27,7 @@ class ProductManager{
         code: code,
         stock: stock
     }
-    if (this.productos.length ===0){//ID autoincrementable, esto me lo copie de una profe que tuve.
+    if (this.productos.length ===0){
         newProduct.id = 1;
     }
     else{
@@ -41,7 +40,7 @@ class ProductManager{
     }
     getProductsById(id){
         const product = this.productos.find((product) => product.id === id);
-        if(product === undefined || null){//Entiendo que hay mas formas de validarlo pero solo se me ocurrio esto.
+        if(product === undefined || null){
             let error = new Error("ID Not Found, please search for another ID")
             console.error(error)
             return
